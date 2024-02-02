@@ -27,7 +27,7 @@ public class CountryRepositoryTest {
     @Test
     public void shouldGetPopulationForOneCountry() {
         log.info("On vérifie que la population d'un pays est correcte");
-        Integer populationAttendue = cityDAO.findByName("Paris").getPopulation() + cityDAO.findByName("Toulouse").getPopulation();
+        Integer populationAttendue = cityDAO.sumPopulationByCountry(1);
         Integer populationTrouvee = countryDAO.getPopulationForCountry(1);
         assertEquals(populationAttendue, populationTrouvee, "On doit trouver la population de la France" );
     }
@@ -35,13 +35,18 @@ public class CountryRepositoryTest {
     @Test
     public void shouldGetListPopulationByCountry() {
         log.info("On vérifie que la population par pays est correcte");
-        Integer populationFrance = cityDAO.findByName("Paris").getPopulation() + cityDAO.findByName("Toulouse").getPopulation();
-        Integer populationItalie = cityDAO.findByName("Florence").getPopulation();
-        Integer populationUK = cityDAO.findByName("London").getPopulation();
-        Integer populationUSA = cityDAO.findByName("New York").getPopulation();
+        Integer populationFrance = cityDAO.sumPopulationByCountry(1);
+        Integer populationItalie = cityDAO.sumPopulationByCountry(4);
+        Integer populationUK = cityDAO.sumPopulationByCountry(2);
+        Integer populationUSA = cityDAO.sumPopulationByCountry(3);
 
         //doit renvoyer une liste avec le nom du pays et sa population pour chacun des pays
         List<PopulationPays> listeTrouvee = countryDAO.getPopulationByCountry();
+
+        //Test simple
+        assertEquals(4, listeTrouvee.size(), "On doit trouver autant d'éléments que de pays" );
+
+        //Test plus poussé
         for (PopulationPays pp : listeTrouvee) {
             if (pp.getName().equals("France")) {
                 assertEquals(populationFrance, pp.getPopulation(), "On doit trouver la population de la France" );

@@ -13,5 +13,7 @@ INSERT INTO City(country_id, id, population, name) VALUES
     (1, default, 2206488, 'Paris'),
     (2, default, 8825000, 'London'),
     (3, default, 8538000, 'New York'),
-    (1, default, 504078, 'Toulouse');
+    (1, default, 479553, 'Toulouse'),
+    (1, default, 257351, 'Bordeaux'),
+    (1, default, 861635, 'Marseille');
 

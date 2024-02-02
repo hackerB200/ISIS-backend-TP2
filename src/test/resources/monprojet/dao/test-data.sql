@@ -3,4 +3,5 @@ INSERT INTO Country(code, name) VALUES
     ('IT', 'Italie');
 
 INSERT INTO City(country_id, population, name) VALUES
-    ((SELECT id FROM Country WHERE name = 'Italie'), 382258, 'Florence');
+    ((SELECT id FROM Country WHERE name = 'Italie'), 382258, 'Florence'),
+    ((SELECT id FROM Country WHERE name = 'Italie'), 2872800, 'Rome');
