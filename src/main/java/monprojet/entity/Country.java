@@ -23,4 +23,7 @@ public class Country {
     @Column(unique=true)
     @NonNull
     private String name;
+
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+    private List<City> cities = new ArrayList<>();
 }
